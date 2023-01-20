@@ -1,0 +1,21 @@
+.profile__title {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffffff;
+  margin: 0;
+  height: max-content;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 389px) {
+  .profile__title {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+

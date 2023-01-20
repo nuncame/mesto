@@ -1,0 +1,18 @@
+.popup__input-title {
+  border: none;
+  margin: 30px 36px 9px 36px;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+@media (max-width: 603px) {
+  .popup__input-title {
+    margin-left: 22px;
+    margin-right: 22px;
+  }
+}
