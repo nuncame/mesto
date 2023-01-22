@@ -13,7 +13,6 @@
   <div class="page">
     <header class="header">
       <img src="./images/logoMesto.svg" alt="Место" class="header__logo">
-      <div class="header__line"></div>
     </header>
 
     <main class="content">
@@ -27,62 +26,50 @@
         <button type="button" class="profile__add-btn"></button>
       </section>
 
-      <div class="elements">
+      <section class="elements">
         <article class="element">
-          <div class="element__background">
-            <img src="./images/karachaevks.jpg" alt="Карачаевск" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Карачаево-Черкессия</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/karachaevks.jpg" alt="Карачаевск" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Карачаево-Черкессия</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
         <article class="element">
-          <div class="element__background">
-            <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Гора Эльбрус</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Гора Эльбрус</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
         <article class="element">
-          <div class="element__background">
-            <img src="./images/dombai.jpg" alt="Домбай" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Домбай</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/dombai.jpg" alt="Домбай" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Домбай</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
         <article class="element">
-          <div class="element__background">
-            <img src="./images/adygea.jpg" alt="Адыгея" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Адыгея</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/adygea.jpg" alt="Адыгея" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Адыгея</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
         <article class="element">
-          <div class="element__background">
-            <img src="./images/karelia.jpg" alt="Карелия" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Карелия</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/karelia.jpg" alt="Карелия" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Карелия</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
         <article class="element">
-          <div class="element__background">
-            <img src="./images/krasnayapolyana.jpg" alt="Красная Поляна" class="element__picture">
-            <div class="element__capture">
-              <h2 class="element__text">Красная поляна</h2>
-              <button class="element__like" type="button"></button>
-            </div>
+          <img src="./images/krasnayapolyana.jpg" alt="Красная Поляна" class="element__picture">
+          <div class="element__capture">
+            <h2 class="element__text">Красная поляна</h2>
+            <button class="element__like" type="button"></button>
           </div>
         </article>
-      </div>
+      </section>
     </main>
 
     <footer class="footer">
@@ -91,15 +78,13 @@
 
     <div class="popup">
       <div class="popup__container">
-        <form class="popup__form">
-          <fieldset class="popup__edit-profile">
-            <h2 class="popup__header">Редактировать профиль</h2>
-            <input type="text" class="popup__input-name">
-            <div class="popup__line"></div>
-            <input type="text" class="popup__input-title">
-            <div class="popup__line"></div>
-            <button type="submit" class="popup__save-btn">Сохранить</button>
-          </fieldset>
+        <h2 class="popup__header">Редактировать профиль</h2>
+        <form class="popup__form" name="popupForm">
+          <input type="text" class="popup__input-name popup_input_text-field" name="popupInputName"
+            placeholder="Введите имя">
+          <input type="text" class="popup__input-title popup_input_text-field" name="popupInputTitle"
+            placeholder="Введите профессию">
+          <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close-btn"></button>
       </div>

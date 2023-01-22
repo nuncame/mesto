@@ -11,18 +11,15 @@
 
 .popup__close-btn:hover {
   cursor: pointer;
-  background: url(../../../images/closeButton-hover.svg);
+  opacity: 0.6;
 }
 
 @media (max-width: 603px) {
   .popup__close-btn {
     top: -36px;
+    right: 0;
     min-width: 20px;
     min-height: 20px;
-    background-size: contain;
-  }
-
-  .popup__close-btn:hover {
     background-size: contain;
   }
 }

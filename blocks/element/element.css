@@ -1,5 +1,5 @@
-.element__background {
-  max-height: 361px;
+.element {
+  min-height: 361px;
   max-width: 282px;
   background-color: #ffffff;
   border-radius: 10px;

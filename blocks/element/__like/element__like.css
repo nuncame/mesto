@@ -1,8 +1,6 @@
 .element__like {
-  position: absolute;
-  right: 5px;
-  top: 5px;
   background: url(../../../images/heart.svg);
+  background-repeat: no-repeat;
   border: none;
   min-width: 22px;
   min-height: 19px;
@@ -11,9 +9,5 @@
 
 .element__like:hover {
   cursor: pointer;
-  background: url(../../../images/heart-hover.svg);
-}
-
-.element__like:active {
-  background: url(../../../images/heart-active.svg);
+  opacity: 0.5;
 }
