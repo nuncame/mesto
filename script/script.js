@@ -1,5 +1,6 @@
 const popupOpenBtn = document.querySelector(".profile__edit-btn");
 const popupPage = document.querySelector(".popup");
+const popupForm = document.querySelector(".popup__form")
 
 let popupInputName = document.querySelector(".popup__input_textfield_name");
 let popupInputTitle = document.querySelector(".popup__input_textfield_title");
@@ -26,6 +27,6 @@ function handleFormSubmit (evt) {
 
 popupOpenBtn.addEventListener("click", openPopup);
 popupCloseBtn.addEventListener("click", closePopup);
-popupPage.addEventListener("submit", handleFormSubmit);
+popupForm.addEventListener("submit", handleFormSubmit);
 
 
