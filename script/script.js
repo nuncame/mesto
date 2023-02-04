@@ -1,21 +1,27 @@
-const popupOpenBtn = document.querySelector(".profile__edit-btn");
-const popupPage = document.querySelector(".popup");
+const popupInfoOpenBtn = document.querySelector(".profile__edit-btn");
+const popupPlaceOpenBtn = document.querySelector(".profile__add-btn");
+const popupPage = document.querySelectorAll(".popup");
+const popupInfoPage = document.querySelector(".popup_type_info");
+const popupPlacePage = document.querySelector(".popup_type_place");
 const popupForm = document.querySelector(".popup__form")
+const popupInputName = document.querySelector(".popup__input_textfield_name");
+const popupInputTitle = document.querySelector(".popup__input_textfield_title");
+const profileName = document.querySelector(".profile__name");
+const profileTitle = document.querySelector(".profile__title");
+const popupCloseBtn = document.querySelectorAll(".popup__close-btn");
 
-let popupInputName = document.querySelector(".popup__input_textfield_name");
-let popupInputTitle = document.querySelector(".popup__input_textfield_title");
-let profileName = document.querySelector(".profile__name");
-let profileTitle = document.querySelector(".profile__title");
-const popupCloseBtn = document.querySelector(".popup__close-btn");
+function openInfoPopup() {
+  popupInfoPage.classList.add("popup_active");
+  popupInputName.value = profileName.textContent;
+  popupInputTitle.value = profileTitle.textContent;
+}
 
-function openPopup() {
-  popupPage.classList.add("popup_active");
-  popupInputName.value = profileName.textContent
-  popupInputTitle.value = profileTitle.textContent
+function openPlacePopup() {
+  popupPlacePage.classList.add("popup_active");
 }
 
 function closePopup() {
-  popupPage.classList.remove("popup_active")
+  popupPage.forEach(item => item.classList.remove("popup_active"));
 }
 
 function handleFormSubmit (evt) {
@@ -25,8 +31,9 @@ function handleFormSubmit (evt) {
   closePopup();
 }
 
-popupOpenBtn.addEventListener("click", openPopup);
-popupCloseBtn.addEventListener("click", closePopup);
+popupInfoOpenBtn.addEventListener("click", openInfoPopup);
+popupPlaceOpenBtn.addEventListener("click", openPlacePopup);
+popupCloseBtn.forEach(btn => btn.addEventListener("click", closePopup));
 popupForm.addEventListener("submit", handleFormSubmit);
 
 
