@@ -25,44 +25,7 @@
         <button type="button" class="profile__add-btn"></button>
       </section>
 
-
-      <section class="elements">
-        <!-- <article class="element">
-          <img src="./images/elbrus.jpg" alt="Эльбрус" class="element__picture">
-          <div class="element__capture">
-            <h2 class="element__text">Гора Эльбрус</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/dombai.jpg" alt="Домбай" class="element__picture">
-          <div class="element__capture">
-            <h2 class="element__text">Домбай</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/adygea.jpg" alt="Адыгея" class="element__picture">
-          <div class="element__capture">
-            <h2 class="element__text">Адыгея</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/karelia.jpg" alt="Карелия" class="element__picture">
-          <div class="element__capture">
-            <h2 class="element__text">Карелия</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
-          <img src="./images/krasnayapolyana.jpg" alt="Красная Поляна" class="element__picture">
-          <div class="element__capture">
-            <h2 class="element__text">Красная поляна</h2>
-            <button class="element__like" type="button"></button>
-          </div>
-        </article> -->
-      </section>
+      <section class="elements"></section>
     </main>
 
     <footer class="footer">
@@ -79,7 +42,7 @@
             placeholder="Введите профессию">
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
-        <button type="button" class="popup__close-btn"></button>
+        <button type="button" class="popup__close-btn popup__close-btn_type_info"></button>
       </div>
     </div>
 
@@ -93,7 +56,7 @@
             name="popupInputTitle" placeholder="Ссылка на картинку" required>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
-        <button type="button" class="popup__close-btn"></button>
+        <button type="button" class="popup__close-btn popup__close-btn_type_place"></button>
       </div>
     </div>
 
@@ -103,7 +66,7 @@
           <img class="popup__picture" src="#" alt="#">
           <figcaption class="popup__caption"></figcaption>
         </figure>
-        <button type="button" class="popup__close-btn"></button>
+        <button type="button" class="popup__close-btn popup__close-btn_type_image"></button>
       </div>
     </div>
   </div>
@@ -121,6 +84,7 @@
     </article>
   </template>
 
+  <script src="./script/places.js"></script>
   <script src="./script/script.js"></script>
 
 </body>
