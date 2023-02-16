@@ -36,10 +36,12 @@
       <div class="popup__container">
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_info" name="popupForm">
-          <input type="text" class="popup__input popup__input_textfield_name" name="popupInputName"
-            placeholder="Введите имя">
-          <input type="text" class="popup__input popup__input_textfield_title" name="popupInputTitle"
-            placeholder="Введите профессию">
+          <input type="text" class="popup__input popup__input_textfield_name" name="name-input" id="name-input"
+            placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <span class="popup__item-error name-input-error"></span>
+          <input type="text" class="popup__input popup__input_textfield_title" name="title-input" id="title-input"
+            placeholder="Введите профессию" minlength="2" maxlength="200" required>
+          <span class="popup__item-error title-input-error"></span>
           <button type="submit" class="popup__save-btn">Сохранить</button>
         </form>
         <button type="button" class="popup__close-btn popup__close-btn_type_info"></button>
@@ -51,10 +53,12 @@
         <h2 class="popup__header">Новое место</h2>
         <form class="popup__form popup__form_type_card" name="popupForm">
           <input type="text" class="popup__input popup__input_textfield_name popup__input_type_place-name"
-            name="popupInputName" placeholder="Название" required>
+            name="placeName-input" id="placeName-input" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__item-error placeName-input-error"></span>
           <input type="url" class="popup__input popup__input_textfield_title popup__input_type_place-link"
-            name="popupInputTitle" placeholder="Ссылка на картинку" required>
-          <button type="submit" class="popup__save-btn">Сохранить</button>
+            name="link-input" id="link-input" placeholder="Ссылка на картинку" required>
+          <span class="popup__item-error link-input-error"></span>
+          <button type="submit" class="popup__save-btn" disabled>Сохранить</button>
         </form>
         <button type="button" class="popup__close-btn popup__close-btn_type_place"></button>
       </div>
@@ -84,8 +88,9 @@
     </article>
   </template>
 
-  <script src="./script/places.js"></script>
-  <script src="./script/script.js"></script>
+  <script defer src="./script/places.js"></script>
+  <script defer src="./script/validate.js"></script>
+  <script defer src="./script/script.js"></script>
 
 </body>
 

@@ -1,4 +1,6 @@
-const elemTemplate = document.querySelector(".elements-template").content.querySelector(".element");
+const elemTemplate = document
+  .querySelector(".elements-template")
+  .content.querySelector(".element");
 const elements = document.querySelector(".elements");
 const popupInfoOpenBtn = document.querySelector(".profile__edit-btn");
 const popupPlaceOpenBtn = document.querySelector(".profile__add-btn");
@@ -11,8 +13,12 @@ const popupInputTitle = document.querySelector(".popup__input_textfield_title");
 const profileName = document.querySelector(".profile__name");
 const profileTitle = document.querySelector(".profile__title");
 const popupInfoCloseBtn = document.querySelector(".popup__close-btn_type_info");
-const popupPlaceCloseBtn = document.querySelector(".popup__close-btn_type_place");
-const popupImageCloseBtn = document.querySelector(".popup__close-btn_type_image");
+const popupPlaceCloseBtn = document.querySelector(
+  ".popup__close-btn_type_place"
+);
+const popupImageCloseBtn = document.querySelector(
+  ".popup__close-btn_type_image"
+);
 const popupFormInfo = document.querySelector(".popup__form_type_info");
 const popupFormCard = document.querySelector(".popup__form_type_card");
 const cardName = document.querySelector(".popup__input_type_place-name");
@@ -27,20 +33,24 @@ function makeCard(card) {
   element.querySelector(".element__picture").alt = card.name;
 
   element.querySelector(".element__like").addEventListener("click", () => {
-    element.querySelector(".element__like").classList.toggle("element__like_active");
+    element
+      .querySelector(".element__like")
+      .classList.toggle("element__like_active");
   });
 
   element.querySelector(".element__trash").addEventListener("click", () => {
     element.remove();
   });
 
-  element.querySelector(".element__image-fullscreen").addEventListener("click", (evt) => {
-    evt.preventDefault();
-    openPopup(popupImagePage);
-    popupPic.src = card.link;
-    popupPic.alt = card.name;
-    popupCaption.textContent = card.name;
-  });
+  element
+    .querySelector(".element__image-fullscreen")
+    .addEventListener("click", (evt) => {
+      evt.preventDefault();
+      openPopup(popupImagePage);
+      popupPic.src = card.link;
+      popupPic.alt = card.name;
+      popupCaption.textContent = card.name;
+    });
 
   return element;
 }
@@ -48,15 +58,15 @@ function makeCard(card) {
 function renderCards() {
   const cards = initialCards.map((card) => {
     return makeCard(card);
-  })
+  });
   elements.append(...cards);
 }
 
-function addNewCard (evt) {
+function addNewCard(evt) {
   evt.preventDefault();
   const name = cardName.value;
   const link = cardLink.value;
-  const element = makeCard({name, link});
+  const element = makeCard({ name, link });
   elements.prepend(element);
   popupFormCard.reset();
   closePopup(popupPlacePage);
@@ -64,10 +74,23 @@ function addNewCard (evt) {
 
 function openPopup(popupWindow) {
   popupWindow.classList.add("popup_active");
+  document.addEventListener("keydown", function (evt) {
+    if (evt.key === "Escape") {
+      closePopup(popupWindow);
+    }
+  });
 }
 
 function closePopup(popupWindow) {
+  resetForm(config);
   popupWindow.classList.remove("popup_active");
+}
+
+function closePopupPage(evt) {
+  if (evt.target === evt.currentTarget) {
+    popupPage.forEach((page) => page.classList.remove("popup_active"));
+    resetForm(config);
+  }
 }
 
 function openInfoPopup() {
@@ -76,7 +99,7 @@ function openInfoPopup() {
   popupInputTitle.value = profileTitle.textContent;
 }
 
-function submitInfoForm (evt) {
+function submitInfoForm(evt) {
   evt.preventDefault();
   profileName.textContent = popupInputName.value;
   profileTitle.textContent = popupInputTitle.value;
@@ -84,6 +107,7 @@ function submitInfoForm (evt) {
 }
 
 renderCards();
+enableValidation(config);
 popupInfoOpenBtn.addEventListener("click", openInfoPopup);
 popupPlaceOpenBtn.addEventListener("click", () => openPopup(popupPlacePage));
 popupInfoCloseBtn.addEventListener("click", () => closePopup(popupInfoPage));
@@ -91,5 +115,4 @@ popupPlaceCloseBtn.addEventListener("click", () => closePopup(popupPlacePage));
 popupImageCloseBtn.addEventListener("click", () => closePopup(popupImagePage));
 popupFormInfo.addEventListener("submit", submitInfoForm);
 popupFormCard.addEventListener("submit", addNewCard);
-
-
+popupPage.forEach((page) => page.addEventListener("click", closePopupPage));
