@@ -13,7 +13,6 @@
   color: #ffffff;
 }
 
-
 .popup__save-btn:disabled {
   background-color: #ffffff;
   color: #c4c4c4;
@@ -23,12 +22,6 @@
 .popup__save-btn:hover:not(:disabled) {
   cursor: pointer;
   opacity: 0.2;
-}
-
-.popup__save-btn:disabled {
-  background-color: #ffffff;
-  color: #c4c4c4;
-  border: 1px solid #c4c4c4;
 }
 
 @media (max-width: 603px) {
