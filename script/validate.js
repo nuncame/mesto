@@ -45,9 +45,14 @@ const enableValidation = (config) => {
     );
     const saveBtn = popupElement.querySelector(config.submitButtonSelector);
     inputList.forEach((formElement) => {
-      formElement.addEventListener("input", function () {
+      formElement.addEventListener("input", () => {
         isValid(popupElement, formElement);
         toggleButtonState(inputList, saveBtn);
+      });
+      popupElement.addEventListener("reset", () => {
+        setTimeout(() => {
+          toggleButtonState(inputList, saveBtn), 0;
+        });
       });
     });
   };
@@ -77,20 +82,22 @@ const enableValidation = (config) => {
   });
 };
 
-const resetForm = (config) => {
+const resetForm = (config, popupWindow) => {
   const inputFields = Array.from(
-    document.querySelectorAll(config.popupElement)
+    popupWindow.querySelectorAll(config.popupElement)
   );
   inputFields.forEach((item) => {
     item.reset();
   });
-  const errorSpans = Array.from(document.querySelectorAll(config.errorElement));
+  const errorSpans = Array.from(
+    popupWindow.querySelectorAll(config.errorElement)
+  );
   errorSpans.forEach((item) => {
     item.classList.remove(config.errorClass);
     item.textContent = "";
   });
   const errorInputs = Array.from(
-    document.querySelectorAll(config.inputElement)
+    popupWindow.querySelectorAll(config.inputElement)
   );
   errorInputs.forEach((item) => {
     item.classList.remove(config.inputErrorClass);

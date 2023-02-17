@@ -72,24 +72,27 @@ function addNewCard(evt) {
   closePopup(popupPlacePage);
 }
 
+function closePopupOnEscape(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_active");
+    closePopup(openedPopup);
+  }
+}
+
 function openPopup(popupWindow) {
+  resetForm(config, popupWindow);
   popupWindow.classList.add("popup_active");
-  document.addEventListener("keydown", function (evt) {
-    if (evt.key === "Escape") {
-      closePopup(popupWindow);
-    }
-  });
+  document.addEventListener("keydown", closePopupOnEscape);
 }
 
 function closePopup(popupWindow) {
-  resetForm(config);
   popupWindow.classList.remove("popup_active");
+  document.removeEventListener("keydown", closePopupOnEscape);
 }
 
 function closePopupPage(evt) {
   if (evt.target === evt.currentTarget) {
-    popupPage.forEach((page) => page.classList.remove("popup_active"));
-    resetForm(config);
+    popupPage.forEach((page) => closePopup(page));
   }
 }
 
