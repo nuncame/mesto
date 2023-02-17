@@ -80,7 +80,6 @@ function closePopupOnEscape(evt) {
 }
 
 function openPopup(popupWindow) {
-  resetForm(config, popupWindow);
   popupWindow.classList.add("popup_active");
   document.addEventListener("keydown", closePopupOnEscape);
 }
@@ -97,9 +96,11 @@ function closePopupPage(evt) {
 }
 
 function openInfoPopup() {
+  resetForm(config, popupInfoPage);
   openPopup(popupInfoPage);
   popupInputName.value = profileName.textContent;
   popupInputTitle.value = profileTitle.textContent;
+
 }
 
 function submitInfoForm(evt) {
@@ -112,7 +113,10 @@ function submitInfoForm(evt) {
 renderCards();
 enableValidation(config);
 popupInfoOpenBtn.addEventListener("click", openInfoPopup);
-popupPlaceOpenBtn.addEventListener("click", () => openPopup(popupPlacePage));
+popupPlaceOpenBtn.addEventListener("click", () => {
+  resetForm(config, popupPlacePage);
+  openPopup(popupPlacePage);
+});
 popupInfoCloseBtn.addEventListener("click", () => closePopup(popupInfoPage));
 popupPlaceCloseBtn.addEventListener("click", () => closePopup(popupPlacePage));
 popupImageCloseBtn.addEventListener("click", () => closePopup(popupImagePage));
