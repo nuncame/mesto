@@ -1,10 +1,4 @@
-const popupImagePage = document.querySelector('.popup_type_image');
-const popupPic = document.querySelector('.popup__picture');
-const popupCaption = document.querySelector('.popup__caption');
-const popupImageCloseBtn = document.querySelector(
-  '.popup__close-btn_type_image'
-);
-
+import { popupImagePage, popupPic, popupCaption, openPopup } from "./index.js";
 export default class Card {
   constructor(data, templateSelector) {
     this._name = data.name;
@@ -15,7 +9,7 @@ export default class Card {
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
-      .content.querySelector('.element')
+      .content.querySelector(".element")
       .cloneNode(true);
 
     return cardElement;
@@ -23,12 +17,16 @@ export default class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+
+    this._elementPic = this._element.querySelector(".element__picture");
+    this._elementLikeBtn = this._element.querySelector(".element__like");
+    this._elementTrashBtn = this._element.querySelector(".element__trash");
+    
+    this._element.querySelector(".element__text").textContent = this._name;
+    this._elementPic.src = this._image;
+    this._elementPic.alt = this._name;
+
     this._setEventListeners();
-
-    this._element.querySelector('.element__text').textContent = this._name;
-    this._element.querySelector('.element__picture').src = this._image;
-    this._element.querySelector('.element__picture').alt = this._name;
-
     return this._element;
   }
 
@@ -36,45 +34,31 @@ export default class Card {
     popupPic.src = this._image;
     popupPic.alt = this._name;
     popupCaption.textContent = this._name;
-    popupImagePage.classList.add('popup_active');
-    document.addEventListener('keyup', (evt) => this._handleEscClose(evt));
-  }
-
-  _handleClosePopup() {
-    popupPic.src = '';
-    popupImagePage.classList.remove('popup_active');
-  }
-
-  _handleEscClose(evt) {
-    if (evt.key === 'Escape') {
-      this._handleClosePopup();
-    }
+    openPopup(popupImagePage);
   }
 
   _handleRemoveElement() {
     this._element.remove();
+    this._element = null;
+  }
+
+  _handleLikeElement() {
+    const _elementLike = this._element.querySelector(".element__like");
+    _elementLike.classList.toggle("element__like_active");
   }
 
   _setEventListeners() {
-    const _elementRemoveBtn = this._element.querySelector('.element__trash');
-    _elementRemoveBtn.addEventListener('click', () => {
+    this._elementTrashBtn.addEventListener("click", () => {
       this._handleRemoveElement();
     });
 
     const _elementPicture = this._element.querySelector(
-      '.element__image-fullscreen'
+      ".element__image-fullscreen"
     );
-    _elementPicture.addEventListener('click', () => {
-      this._handleOpenPopup();
-    });
+    this._elementPic.addEventListener("click", () => {});
 
-    popupImageCloseBtn.addEventListener('click', () => {
-      this._handleClosePopup();
-    });
-
-    const _elementLike = this._element.querySelector('.element__like');
-    _elementLike.addEventListener('click', () => {
-      _elementLike.classList.toggle('element__like_active');
+    this._elementLikeBtn.addEventListener("click", () => {
+      this._handleLikeElement();
     });
   }
 }
