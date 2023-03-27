@@ -26,7 +26,7 @@ export default class FormValidator {
     );
     inputElement.classList.remove(this.config.inputErrorClass);
     errorElement.classList.remove(this.config.errorClass);
-    errorElement.textContent = "";
+    errorElement.textContent = '';
   }
 
   _allInputsValid() {
@@ -45,19 +45,19 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._allInputsValid(this._inputList)) {
-      this._btnSave.removeAttribute("disabled");
+      this._btnSave.removeAttribute('disabled');
     } else {
-      this._btnSave.setAttribute("disabled", "disabled");
+      this._btnSave.setAttribute('disabled', 'disabled');
     }
   }
 
   _setEventListeners() {
     this._inputList.forEach((element) => {
-      element.addEventListener("input", () => {
+      element.addEventListener('input', () => {
         this._checkInputValidity(element);
         this._toggleButtonState();
       });
-      this._formElement.addEventListener("reset", () => {
+      this._formElement.addEventListener('reset', () => {
         setTimeout(() => {
           this._toggleButtonState(), 0;
         });

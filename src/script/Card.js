@@ -9,7 +9,7 @@ export default class Card {
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
-      .content.querySelector(".element")
+      .content.querySelector('.element')
       .cloneNode(true);
 
     return cardElement;
@@ -23,11 +23,11 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
 
-    this._elementPic = this._element.querySelector(".element__picture");
-    this._elementLikeBtn = this._element.querySelector(".element__like");
-    this._elementTrashBtn = this._element.querySelector(".element__trash");
+    this._elementPic = this._element.querySelector('.element__picture');
+    this._elementLikeBtn = this._element.querySelector('.element__like');
+    this._elementTrashBtn = this._element.querySelector('.element__trash');
 
-    this._element.querySelector(".element__text").textContent = this._name;
+    this._element.querySelector('.element__text').textContent = this._name;
     this._elementPic.src = this._image;
     this._elementPic.alt = this._name;
 
@@ -41,19 +41,19 @@ export default class Card {
   }
 
   _handleLikeElement() {
-    this._elementLikeBtn.classList.toggle("element__like_active");
+    this._elementLikeBtn.classList.toggle('element__like_active');
   }
 
   _setEventListeners() {
-    this._elementTrashBtn.addEventListener("click", () => {
+    this._elementTrashBtn.addEventListener('click', () => {
       this._handleRemoveElement();
     });
 
-    this._elementPic.addEventListener("click", () => {
+    this._elementPic.addEventListener('click', () => {
       this._handleCardClick();
     });
 
-    this._elementLikeBtn.addEventListener("click", () => {
+    this._elementLikeBtn.addEventListener('click', () => {
       this._handleLikeElement();
     });
   }
