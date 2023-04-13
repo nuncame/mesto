@@ -1,7 +1,6 @@
 .element__capture {
   display: flex;
   padding-right: 5px;
-  align-items: baseline;
   justify-content: space-between;
   align-items: center;
   margin-top: 21px;
