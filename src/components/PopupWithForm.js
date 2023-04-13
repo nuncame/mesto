@@ -33,68 +33,19 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  _postCard() {
-    this._api
-      .addCard(this._getInputValues())
-      .then((data) => {
-        return this._handleFormSubmit(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  _updateUserData() {
-    this._api
-      .setUserData(this._getInputValues())
-      .then((data) => {
-        return this._handleFormSubmit(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  _updateAvatar() {
-    this._api
-      .setAvatar(this._getInputValues())
-      .then((data) => {
-        return this._handleFormSubmit(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  setEventListenersCard() {
+  setEventListeners() {
     this._formSelector.addEventListener("submit", (event) => {
       event.preventDefault();
       this._popupDataLoading(true);
-      this._postCard();
+      this._handleFormSubmit(this._getInputValues());
     });
-    super.setEventListeners();
-  }
 
-  setEventListenersInfo() {
-    this._formSelector.addEventListener("submit", (event) => {
-      event.preventDefault();
-      this._popupDataLoading(true);
-      this._updateUserData();
-    });
-    super.setEventListeners();
-  }
-
-  setEventListenersAvatar() {
-    this._formSelector.addEventListener("submit", (event) => {
-      event.preventDefault();
-      this._popupDataLoading(true);
-      this._updateAvatar();
-    });
     super.setEventListeners();
   }
 
   close() {
     this._formSelector.reset();
+    this._popupDataLoading(false);
     super.close();
   }
 }

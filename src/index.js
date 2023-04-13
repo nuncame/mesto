@@ -48,6 +48,7 @@ Promise.all([cards, api.getUserData()])
     userId = userData._id;
     renderCards(initialCards).renderItems(initialCards);
     userInfo.setUserInfo(userData);
+    userInfo.setAvatar(userData);
   })
   .catch((err) => {
     console.log(err);
@@ -112,44 +113,51 @@ function renderCards(cards) {
   return defaultCardList;
 }
 
-const infoPopup = new PopupWithForm(
-  {
-    popupSelector: popupInfoPage,
-    formSelector: popupInfoForm,
-    handleFormSubmit: (formData) => {
-      userInfo.setUserInfo(formData);
-      infoPopup.close();
-    },
+const infoPopup = new PopupWithForm({
+  popupSelector: popupInfoPage,
+  formSelector: popupInfoForm,
+  handleFormSubmit: (formData) => {
+    userInfo.setUserInfo(formData);
+    api
+      .setUserData(formData)
+      .then(() => {
+        infoPopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
-  api
-);
-infoPopup.setEventListenersInfo();
+});
+infoPopup.setEventListeners();
 
-const placePopup = new PopupWithForm(
-  {
-    popupSelector: popupPlacePage,
-    formSelector: popupPlaceForm,
-    handleFormSubmit: (formData) => {
-      renderCards(cards).addItem(createCard(formData));
+const placePopup = new PopupWithForm({
+  popupSelector: popupPlacePage,
+  formSelector: popupPlaceForm,
+  handleFormSubmit: (formData) => {
+    api.addCard(formData).then((res) => {
+      renderCards(cards).addItem(createCard(res));
       placePopup.close();
-    },
+    });
   },
-  api
-);
-placePopup.setEventListenersCard();
+});
+placePopup.setEventListeners();
 
-const avatarPopup = new PopupWithForm(
-  {
-    popupSelector: popupAvatarPage,
-    formSelector: popupAvatarForm,
-    handleFormSubmit: (formData) => {
-      userInfo.setUserInfo(formData);
-      avatarPopup.close();
-    },
+const avatarPopup = new PopupWithForm({
+  popupSelector: popupAvatarPage,
+  formSelector: popupAvatarForm,
+  handleFormSubmit: (formData) => {
+    userInfo.setAvatar(formData);
+    api
+      .setAvatar(formData)
+      .then(() => {
+        avatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
-  api
-);
-avatarPopup.setEventListenersAvatar();
+});
+avatarPopup.setEventListeners();
 
 validateInfoPopup.enableValidation();
 validatePlacePopup.enableValidation();
