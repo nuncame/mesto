@@ -15,11 +15,13 @@
 
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/kusto.jpg')%>" alt="Аватар" class="profile__avatar">
+        <button type="button" class="profile__avatar-btn" >
+          <img src="#" alt="Аватар" class="profile__avatar">
+        </button>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name"></h1>
           <button type="button" class="profile__edit-btn"></button>
-          <p class="profile__title">Исследователь океана</p>
+          <p class="profile__title"></p>
         </div>
         <button type="button" class="profile__add-btn"></button>
       </section>
@@ -35,10 +37,10 @@
       <div class="popup__container">
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_info" name="popupForm" novalidate>
-          <input type="text" class="popup__input popup__input_textfield_name" name="userName" id="name-input"
+          <input type="text" class="popup__input popup__input_textfield_name" name="name" id="name-input"
             placeholder="Введите имя" minlength="2" maxlength="40" required>
           <span class="popup__item-error name-input-error"></span>
-          <input type="text" class="popup__input popup__input_textfield_title" name="info" id="title-input"
+          <input type="text" class="popup__input popup__input_textfield_title" name="about" id="title-input"
             placeholder="Введите профессию" minlength="2" maxlength="200" required>
           <span class="popup__item-error title-input-error"></span>
           <button type="submit" class="popup__save-btn" inactive>Сохранить</button>
@@ -51,10 +53,10 @@
       <div class="popup__container">
         <h2 class="popup__header">Новое место</h2>
         <form class="popup__form popup__form_type_card" name="popupForm" novalidate>
-          <input type="text" class="popup__input popup__input_textfield_name popup__input_type_place-name"
+          <input type="text" class="popup__input popup__input_type_place-name"
             name="name" id="placeName-input" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="popup__item-error placeName-input-error"></span>
-          <input type="url" class="popup__input popup__input_textfield_title popup__input_type_place-link"
+          <input type="url" class="popup__input popup__input_type_place-link"
             name="link" id="link-input" placeholder="Ссылка на картинку" required>
           <span class="popup__item-error link-input-error"></span>
           <button type="submit" class="popup__save-btn" disabled>Сохранить</button>
@@ -72,6 +74,30 @@
         <button type="button" class="popup__close-btn popup__close-btn_type_image"></button>
       </div>
     </div>
+
+    <div class="popup popup_type_confirm">
+      <div class="popup__container popup__container_type_confirm">
+        <h2 class="popup__header">Вы уверены?</h2>
+        <form class="popup__form popup__form_type_confirm" name="popupForm" novalidate>
+          <button type="submit" class="popup__save-btn">Да</button>
+        </form>
+        <button type="button" class="popup__close-btn popup__close-btn_type_confirm"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_type_avatar">
+      <div class="popup__container popup__container_type_avatar">
+        <h2 class="popup__header">Обновить аватар</h2>
+        <form class="popup__form popup__form_type_avatar" name="popupForm" novalidate>
+          <input type="url" class="popup__input popup__input_textfield_title popup__input_type_avatar-link"
+            name="avatar" id="avatar-input" placeholder="Ссылка на картинку" required>
+          <span class="popup__item-error avatar-input-error"></span>
+          <button type="submit" class="popup__save-btn" disabled>Сохранить</button>
+        </form>
+        <button type="button" class="popup__close-btn popup__close-btn_type_avatar"></button>
+      </div>
+    </div>
+
   </div>
 
   <template class="elements-template">
@@ -82,7 +108,10 @@
       <button class="element__trash" type="button"></button>
       <div class="element__capture">
         <h2 class="element__text"></h2>
-        <button class="element__like" type="button"></button>
+        <div class="element__like-section">
+          <button class="element__like" type="button"></button>
+          <p class="element__like-quantity"></p>
+        </div>
       </div>
     </article>
   </template>
