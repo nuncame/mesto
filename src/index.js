@@ -74,24 +74,39 @@ function createCard(item) {
       },
       handleLikeClick: (card) => {
         if (card.data.likes.find((userLiked) => userLiked._id === userId)) {
-          api.removeLike(card.data._id).then((res) => {
-            card.removeLike(card.data._id);
-            card.getLikesQuantity(res.likes);
-          });
+          api
+            .removeLike(card.data._id)
+            .then((res) => {
+              card.removeLike(card.data._id);
+              card.getLikesQuantity(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
-          api.addLike(card.data._id).then((res) => {
-            card.addLike(card.data._id);
-            card.getLikesQuantity(res.likes);
-          });
+          api
+            .addLike(card.data._id)
+            .then((res) => {
+              card.addLike(card.data._id);
+              card.getLikesQuantity(res.likes);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       },
       handleTrashClick: (card) => {
         removeCardPopup.open();
         removeCardPopup.setSubmitAction(() => {
-          api.removeCard(card.data._id).then(() => {
-            card.deleteCard();
-            removeCardPopup.close();
-          });
+          api
+            .removeCard(card.data._id)
+            .then(() => {
+              card.deleteCard();
+              removeCardPopup.close();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         });
       },
     },
@@ -117,11 +132,14 @@ const infoPopup = new PopupWithForm({
   popupSelector: popupInfoPage,
   formSelector: popupInfoForm,
   handleFormSubmit: (formData) => {
-    userInfo.setUserInfo(formData);
     api
       .setUserData(formData)
-      .then(() => {
+      .then((res) => {
+        userInfo.setUserInfo(res);
         infoPopup.close();
+      })
+      .finally(() => {
+        infoPopup.popupDataLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -134,10 +152,18 @@ const placePopup = new PopupWithForm({
   popupSelector: popupPlacePage,
   formSelector: popupPlaceForm,
   handleFormSubmit: (formData) => {
-    api.addCard(formData).then((res) => {
-      renderCards(cards).addItem(createCard(res));
-      placePopup.close();
-    });
+    api
+      .addCard(formData)
+      .then((res) => {
+        renderCards(cards).addItem(createCard(res));
+        placePopup.close();
+      })
+      .finally(() => {
+        placePopup.popupDataLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 });
 placePopup.setEventListeners();
@@ -146,11 +172,14 @@ const avatarPopup = new PopupWithForm({
   popupSelector: popupAvatarPage,
   formSelector: popupAvatarForm,
   handleFormSubmit: (formData) => {
-    userInfo.setAvatar(formData);
     api
       .setAvatar(formData)
-      .then(() => {
+      .then((res) => {
+        userInfo.setAvatar(res);
         avatarPopup.close();
+      })
+      .finally(() => {
+        avatarPopup.popupDataLoading(false);
       })
       .catch((err) => {
         console.log(err);
