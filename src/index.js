@@ -39,6 +39,13 @@ const userInfo = new UserInfo({
   avatarSelector: avatarSelector,
 });
 
+const defaultCardList = new Section(
+  {
+    renderer: (data) => defaultCardList.addItem(createCard(data)),
+  },
+  config.cardsContainerSelector
+);
+
 let userId = null;
 
 const cards = api.getCards();
@@ -46,7 +53,7 @@ const cards = api.getCards();
 Promise.all([cards, api.getUserData()])
   .then(([initialCards, userData]) => {
     userId = userData._id;
-    renderCards(initialCards).renderItems(initialCards);
+    defaultCardList.renderItems(initialCards);
     userInfo.setUserInfo(userData);
     userInfo.setAvatar(userData);
   })
@@ -116,18 +123,6 @@ function createCard(item) {
   return cardElement;
 }
 
-function renderCards(cards) {
-  const defaultCardList = new Section(
-    {
-      items: cards,
-      renderer: (data) => defaultCardList.addItem(createCard(data)),
-    },
-    config.cardsContainerSelector
-  );
-
-  return defaultCardList;
-}
-
 const infoPopup = new PopupWithForm({
   popupSelector: popupInfoPage,
   formSelector: popupInfoForm,
@@ -155,7 +150,7 @@ const placePopup = new PopupWithForm({
     api
       .addCard(formData)
       .then((res) => {
-        renderCards(cards).addItem(createCard(res));
+        defaultCardList.addItem(createCard(res));
         placePopup.close();
       })
       .finally(() => {
